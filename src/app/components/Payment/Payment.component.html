@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout</title>
+</head>
+<body>
+    <section id="payment" class="min-vh-100">
+      <div class="container pt-5 mt-5">
+        <div class="row">
+          <div class="col-md-10 m-auto">
+            <form [formGroup]="checkout" (ngSubmit)="confirmPayment(checkout)">
+              <div class="layerCart bg-light p-5">
+                <div class="mb-3">
+                  <label for="" class="form-label">details</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    formControlName="details"
+                    name="details"
+                    id="details"
+                    placeholder="Enter Details"
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="" class="form-label">phone</label>
+                  <input
+                    type="tel"
+                    class="form-control"
+                    formControlName="phone"
+                    name="phone"
+                    id="phone"
+                    placeholder="Enter Phone Number"
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="" class="form-label">city</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    formControlName="city"
+                    name="city"
+                    id="city"
+                    placeholder="Enter your city"
+                  />
+                </div>
+                <div>
+                  <button
+                    class="btn bg-main text-light"
+                  >
+                    Pay
+                    <span *ngIf="isLoading">
+                      <i class="fas fa-spinner fa-spin"></i>
+                    </span>
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>  
+    </section>
+</body>
+</html>

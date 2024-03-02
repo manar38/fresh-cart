@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Product Details</title>
+  </head>
+  <body>
+    <section id="product-details" class="my-5 pt-5">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-3">
+            <img
+              [src]="myProduct?.imageCover"
+              class="w-100"
+              alt="{{ myProduct?.title }}"
+            />
+          </div>
+          <div class="col-md-9">
+            <div class="layer d-flex h-100 flex-column justify-content-center">
+              <h2>{{ myProduct?.title }}</h2>
+              <p>{{ myProduct?.description }}</p>
+              <br />
+              <p class="text-main">{{ myProduct?.category?.name }}</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <p>{{ myProduct?.price | currency }}</p>
+                <p>
+                  {{ myProduct?.ratingsQuantity }}
+                  <i class="fas fa-star rating-color"></i>
+                </p>
+              </div>
+              <button (click)="addToCart(myProduct?._id)" class="btn bg-main w-100 text-light">
+                Add to cart <i class="fas fa-shopping-cart"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

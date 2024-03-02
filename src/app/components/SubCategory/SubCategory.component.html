@@ -1,0 +1,15 @@
+<section class="m-5 p-5 min-vh-100" id="sub-category">
+  <div class="container">
+    <div class="row g-3">
+      <div *ngFor="let item of subCategories" class="col-md-4">
+        <div class="card product">
+          <div class="card-body">
+            <div class="card-footer">
+              <a class="btn text-success w-100">{{ item?.name }}</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

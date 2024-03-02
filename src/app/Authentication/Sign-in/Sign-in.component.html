@@ -1,0 +1,139 @@
+<section id="sign-in" class="m-5 p-5">
+  <div class="container">
+    
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm)">
+      <div class="row">
+        <h1 class=" mt-5">Login now</h1>
+        <div class="col-md-12">
+          <div class="mb-3">
+            <mat-form-field class="w-100">
+              
+              <input
+                type="email"
+                formControlName="email"
+                name="email"
+                id="email"
+                placeholder="Enter Your Email"
+                matInput
+               
+                [ngClass]="{
+                  'is-invalid':
+                    loginForm.get('email')?.errors &&
+                    loginForm.get('email')?.dirty,
+                  'is-valid':!loginForm.get('email')?.errors &&
+                    loginForm.get('email')?.dirty,
+                }"
+              />
+            </mat-form-field>
+            <div
+              *ngIf="
+                loginForm.get('email')?.errors &&
+                loginForm.get('email')?.touched
+              "
+              class="email-errors"
+            >
+              <p
+                *ngIf="loginForm.get('email')?.getError('required')"
+                class="text-danger"
+              >
+                this is a required input !
+              </p>
+              <p
+                *ngIf="loginForm.get('email')?.getError('email')"
+                class="text-danger"
+              >
+                Enter a valid Email !
+              </p>
+            </div>
+            <div class="mb-3 mt-2">
+              <mat-form-field class="w-100">
+               
+                <input
+                  type="password"
+                  formControlName="password"
+                  name="password"
+                  id="password"
+                  placeholder="Enter your password"
+                  [ngClass]="{
+                    'is-invalid':
+                      loginForm.get('password')?.errors &&
+                      loginForm.get('password')?.dirty,
+                    'is-valid':!loginForm.get('password')?.errors &&
+                      loginForm.get('password')?.dirty,
+                  }"
+                  matInput
+                  [type]="hide ? 'password' : 'text'"
+                />
+                <button
+                  type="button"
+                  mat-icon-button
+                  matSuffix
+                  (click)="hide = !hide"
+                >
+                  <mat-icon>{{
+                    hide ? "visibility_off" : "visibility"
+                  }}</mat-icon>
+                </button>
+              </mat-form-field>
+              <div
+                *ngIf="
+                  loginForm.get('password')?.errors &&
+                  loginForm.get('password')?.touched
+                "
+                class="password-errors"
+              >
+                <p
+                  *ngIf="loginForm.get('password')?.getError('required')"
+                  class="text-danger"
+                >
+                  this is a required input !
+                </p>
+                <p
+                  *ngIf="loginForm.get('password')?.getError('minlength')"
+                  class="text-danger"
+                >
+                  Length is less than 8 characters !">
+                </p>
+                <p
+                  *ngIf="loginForm.get('password')?.getError('maxlength')"
+                  class="text-danger"
+                >
+                  Length is more than 20 characters !">
+                </p>
+                <p
+                  *ngIf="loginForm.get('password')?.getError('pattern')"
+                  class="text-danger"
+                >
+                  Password must be at least 7characters  , at least one letter and one number:
+                </p>
+              </div>
+              <p *ngIf="errorMsg" class="text-danger">{{ errorMsg }}</p>
+            </div>
+            <br />
+            <div>
+              <button
+                [disabled]="loginForm.invalid"
+                class="btn btn-success float-end"
+              >
+                Login
+                <span *ngIf="isLoading">
+                  <i class="fas fa-spinner fa-spin"></i>
+                </span>
+              </button>
+            </div>
+            <p>
+              
+              <a class="text-success" routerLink="/sign-up">Register if you don't have account</a>
+            </p>
+            <p>
+              
+              <a class="text-success" routerLink="/ForgotPassword"
+                >Reset Password if you forget it </a
+              >
+            </p>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>

@@ -1,0 +1,65 @@
+<nav class="navbar navbar-expand-sm navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand fs-3" routerLink="/home">
+      <i class="fs-3 fa-solid fa-cart-plus" style="color: #63e6be"></i> Fresh
+      Cart</a
+    >
+    <button
+      class="navbar-toggler d-lg-none"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#collapsibleNavId"
+      aria-controls="collapsibleNavId"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="collapsibleNavId">
+      <ul *ngIf="isLogin" class="navbar-nav me-auto mt-2 mt-lg-0 ">
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" routerLink="/home" aria-current="page"
+            >Home</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" routerLink="/brands">Brands</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" routerLink="/category">Category</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" routerLink="/products">Products</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" routerLink="/wishlist">Wishlist</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
+        
+        <li *ngIf="!isLogin" class="nav-item d-flex">
+          <a class="nav-link" routerLink="/sign-in"
+            >login</a
+          >
+          <a class="nav-link" routerLink="/sign-up"
+            >Register</a
+          >
+        </li>
+        <li *ngIf="isLogin" class="nav-item pe-4">
+          <a class="nav-link position-relative" routerLink="/cart"
+            ><i class="fas fs-4 fa-cart-shopping text-main"></i
+          >
+          <span class="badge bg-main text-light position-absolute top-0 start-50"
+          >{{cartItems}}</span
+        >
+        </a>
+        </li>
+        <li *ngIf="isLogin">
+          <a (click)="logout()" class="nav-link" routerLink="/sign-out"
+            >logout</a
+          >
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

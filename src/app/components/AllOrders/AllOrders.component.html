@@ -1,0 +1,57 @@
+<section id="cart" class="pb-5 min-vh-100">
+  <div *ngIf="!isLoading; else loading" class="container mt-5">
+    <div class="row bg-light shadow p-5 justify-content-center">
+      <h1 class="text-center pb-3">My Orders</h1>
+      <div class="col-md-10">
+        <h1 class="fw-bolder text-center w-100 fa-2x text-success"></h1>
+        <ng-container *ngFor="let order of userOrders">
+          <div
+            *ngFor="let item of order.cartItems"
+            class="row p-2 border-bottom"
+          >
+            <div class="col-md-2">
+              <img
+                [src]="item?.product?.imageCover"
+                class="w-100"
+                [alt]="item?.product?.title"
+              />
+            </div>
+            <div
+              *ngIf="!isLoading; else loading"
+              class="col-md-10 d-flex justify-content-between align-items-center"
+            >
+              <div>
+                <p>{{ item?.product?.title }}</p>
+                <p>{{ item?.price | currency : "EGP" }}</p>
+              </div>
+              <div>
+                <p>Brand: {{ item?.product?.brand?.name }}</p>
+                <p class="mx-2">Quantity: {{ item?.count }}</p>
+                <p>Ordered At : {{ order?.createdAt | date : "medium" }}</p>
+              </div>
+            </div>
+            <ng-template #loading>
+              <div
+                class="loading d-flex vh-100 justify-content-center align-items-center"
+              >
+                <i class="fas fa-spinner fa-spin fa-5x text-main"></i>
+              </div>
+            </ng-template>
+          </div>
+        </ng-container>
+        <div class="text-center p-5">
+          <!-- <button (click)="emptyCart()" class="btn btn-outline-danger">
+Clear My Cart <i class="fas fa-trash"></i>
+</button> -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <ng-template #loading>
+    <div
+      class="loading d-flex vh-100 justify-content-center align-items-center"
+    >
+      <i class="fas fa-spinner fa-spin fa-5x text-main"></i>
+    </div>
+  </ng-template>
+</section>

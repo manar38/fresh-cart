@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=
+  , initial-scale=1.0"
+    />
+    <title>Brands</title>
+  </head>
+  <body>
+    <section id="brands" class="min-vh-100 p-5 m-5">
+      <div *ngIf="!isLoading; else loading" class="container">
+        <h1 class="text-center fw-bolder pb-3 text-success">Brands</h1>
+        <div class="row gx-3 gy-3">
+          <div *ngFor="let brand of brands" class="col-md-3">
+            <div
+              (click)="brandDetails(brand._id)"
+              class="card rounded-3 overflow-hidden product"
+            >
+              <div class="card-img">
+                <img
+                  [src]="brand?.image"
+                  class="w-100"
+                  [alt]="brand?.name"
+                  [title]="brand?.name"
+                />
+              </div>
+              <div class="card-body text-center">
+                <p>{{ brand?.name }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <ng-template #loading>
+        <div
+          class="loading d-flex vh-100 justify-content-center align-items-center"
+        >
+          <i class="fas fa-spinner fa-spin fa-5x text-main"></i>
+        </div>
+      </ng-template>
+      <div
+        id="exampleModal"
+        class="modal fade ng-star-inserted d-none"
+        aria-modal="true"
+        role="dialog"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button
+                data-bs-dismiss="modal"
+                aria-label="Close"
+                class="btn-close"
+                (click)="closePopup()"
+                #closeButton
+              ></button>
+            </div>
+            <div class="modal-body">
+              <div class="container">
+                <div
+                  class="row d-flex justify-content-center align-items-center"
+                >
+                  <div class="col-md-6">
+                    <h1 class="green">{{myBrand?.name}}</h1>
+                    <p>{{myBrand?.name}}</p>
+                  </div>
+                  <div class="col-md-6">
+                    <img
+                      alt=""
+                      class="img-fluid"
+                      [src]="myBrand?.image"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                #closeButton
+                data-bs-dismiss="modal"
+                (click)="closePopup()"
+                class="btn btn-secondary"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
